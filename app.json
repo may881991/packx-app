@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "packX-test",
+    "slug": "packX-test",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.packx.booking"
+    },
+    "ios": {
+      "bundleIdentifier": "com.packx.booking"
+    }
+  }
+}
