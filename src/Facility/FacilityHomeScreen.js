@@ -2,17 +2,16 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { View, Text, StyleSheet, StatusBar ,SafeAreaView, ScrollView, Image, TouchableOpacity, SectionList} from 'react-native';
+import { View, Text, StyleSheet, StatusBar ,SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native';
 import {Calendar} from 'react-native-calendars';
 import Lists from '../components/Lists/Lists';
 
 const Stack = createNativeStackNavigator();
 
-function FacilityMainScreen({navigation}){
-
+function FacilityMainScreen({navigation}){ 
   const { colors } = useTheme();
   const theme = useTheme();
-  const DATA = [
+  const tripData = [
     {
       title: "Trip Activity : June 10th 2022",
       data: [
@@ -36,7 +35,7 @@ function FacilityMainScreen({navigation}){
       <Lists key={index} data={data} />
     )
   };
-
+ 
   return (
     <View style={{ flex: 1 }}>
       <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
@@ -81,14 +80,14 @@ function FacilityMainScreen({navigation}){
               enableSwipeMonths={true}
             />
             <View>
-            <SectionList
-              sections={DATA}
-              keyExtractor={(item, index) => item + index}
-              renderItem={({ item }, index) => <ListItem data={item} key={index}/>}
-              renderSectionHeader={({ section: { title } }) => (
-                <Text style={styles.header}>{title}</Text>
-              )}
-            />
+            {tripData.map((item, index) => (
+              <View key={index}> 
+                <Text style={styles.header}>{item.title}</Text>  
+                {item.data.map((data, index) => (
+                  <ListItem data={data} key={index}/>
+                 ))}
+            </View>
+            ))} 
             </View>
         </SafeAreaView>
       </ScrollView>

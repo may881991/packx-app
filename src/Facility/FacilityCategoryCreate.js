@@ -6,19 +6,37 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet,ScrollView, 
 const Stack = createNativeStackNavigator();
 
 const data = [
-  { category: 'General', value: '1' },
-  { category: 'Item 2', value: '2' },
-  { category: 'Item 3', value: '3' },
-  { category: 'Item 4', value: '4' },
-  { category: 'Item 5', value: '5' },
-  { category: 'Item 6', value: '6' },
-  { category: 'Item 7', value: '7' },
-  { category: 'Item 8', value: '8' },
+  { category: 'General Item', value: '1' },
+  { category: 'Clothing', value: '2' },
+  { category: 'Electronics', value: '3' },
+  { category: 'Food', value: '4' },
+  { category: 'Cosmetics', value: '5' },
+  { category: 'Watches', value: '6' },
+  { category: 'Phone', value: '7' },
+  { category: 'Custom Category', value: '8' },
 ];
 
 const weight = [
-  { category: 'lb', value: '1' },
-  { category: 'kg', value: '2' },
+  { weight: 'lb', value: '1' },
+  { weight: 'kg', value: '2' },
+];
+
+const currency = [
+  { currency: 'USD', value: '1' },
+  { currency: 'SGD', value: '2' },
+  { currency: 'MMK', value: '3' },
+  { currency: 'EUR', value: '4' },
+  { currency: 'CAD', value: '5' },
+  { currency: 'JPY', value: '6' },
+  { currency: 'THB', value: '7' },
+  { currency: 'AUD', value: '8' },
+  { currency: 'THB', value: '9' },
+  { currency: 'CHF', value: '10' },
+  { currency: 'KPW', value: '11' },
+  { currency: 'QAR', value: '12' },
+  { currency: 'INR', value: '13' },
+  { currency: 'IDR', value: '14' },
+  { currency: 'LAK', value: '15' },
 ];
 
 function FacilityCategoryForm({navigation}){ 
@@ -33,11 +51,29 @@ function FacilityCategoryForm({navigation}){
     });
   }, [navigation]);
 
+  const [categoryLists,setCategoryLists] = useState([]);
   const [value, setValue] = useState(null);
+  const [category, setCategory] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
-  const [weightVal , setWeight] = useState(null);
-  const [isFocusWeight, setIsFocusWeight] = useState(false);
- 
+  const [weightItem , setWeight] = useState(null);
+  const [weightVal , setWeightVal] = useState(null);
+  const [isFocusWeight, setIsFocusWeight] = useState(false); 
+  const [currencyItem , setCurrency] = useState(null);
+  const [currencyVal , setCurrencyVal] = useState(null);
+  const [isFocusCur, setIsFocusCur ] = useState(false); 
+  const [priceVal, onChangePrice] = useState("");
+
+  function addList(){
+    setCategoryLists(countryList => [{ 
+      category: category,
+      weight: weightVal,
+      price: priceVal,
+      currency: currencyVal  
+    },...countryList]);
+  }
+    
+  console.log(categoryLists)
+  
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -46,53 +82,55 @@ function FacilityCategoryForm({navigation}){
         <Text style={styles.text}> 2 of 2 </Text>
       </View>
         <SafeAreaView style={styles.addRoute}>
-            <Text style={styles.subTitle}>Add PRICIE CHART</Text> 
+            <Text style={styles.label}>PRICIE CHART</Text> 
         </SafeAreaView>  
+        <Text style={styles.inputLabel}>Select pre-set categories</Text>
         <Dropdown
             style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
+            placeholderStyle={styles.placeholderboldStyle}
+            selectedTextStyle={styles.selectedTextStyle} 
             iconStyle={styles.iconStyle}
-            data={data}
-            search
-            maxHeight={300}
+            data={data} 
+            fontFamily='Ubuntu' 
+            maxHeight={200} 
+            activeColor="#D9D9D9"
             labelField="category"
             valueField="value"
-            placeholder={!isFocus ? 'Add Category' : '...'}
+            placeholder={!isFocus ? 'Choose Category' : '...'}
             searchPlaceholder="Search..."
             value={value}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={item => {
               setValue(item.value);
+              setCategory(item.category)
               setIsFocus(false);
             }}
-          renderLeftIcon={() => (
-            <FontAwesome
-              style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
-              name="list-alt"
-              size={23}
-            />
-          )}
-          renderRightIcon={() => (
-            <FontAwesome
-              style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
-              name="chevron-down"
-              size={23}
-            />
-          )}
+            renderLeftIcon={() => (
+              <FontAwesome
+                style={styles.icon}
+                color={isFocus ? 'blue' : 'black'}
+                name="list-alt"
+                size={23}
+              />
+            )}
+            renderRightIcon={() => (
+              <FontAwesome
+                style={styles.icon}
+                color={isFocus ? 'blue' : 'black'}
+                name="chevron-down"
+                size={23}
+              />
+            )}
         />
         <View style={styles.addcategory}>
           <View style={styles.category}> 
             <Text style={styles.inputLabel}>Category</Text>
-            <TextInput style={styles.input} placeholder="Custom Category"/>
+            <TextInput style={styles.input} defaultValue={category} placeholder="Custom Category"/>
           </View>
           <View style={styles.amount}> 
             <Text style={styles.inputLabel}>Price</Text>
-            <TextInput style={styles.input} placeholder="Amount"/>
+            <TextInput style={styles.input} placeholder="Amount" onChangeText={onChangePrice}/>
           </View>
         </View>
         <View style={styles.dateList}>
@@ -103,45 +141,17 @@ function FacilityCategoryForm({navigation}){
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle} 
                 iconStyle={styles.iconStyle}
-                data={weight}
+                data={weight} 
                 maxHeight={300}
-                labelField="category"
+                labelField="weight"
                 valueField="value"
                 placeholder={!isFocusWeight ? 'LB / KG / PC' : '...'} 
-                value={weightVal}
+                value={weightItem}
                 onFocus={() => setIsFocusWeight(true)}
                 onBlur={() => setIsFocusWeight(false)}
                 onChange={item => {
                   setWeight(item.value);
-                  setIsFocusWeight(false);
-                }} 
-              renderRightIcon={() => (
-                <FontAwesome
-                  style={styles.icon}
-                  color={isFocusWeight ? 'blue' : 'black'}
-                  name="chevron-down"
-                  size={23}
-                />
-              )}
-            />
-          </View>
-          <View style={{flex: 2}}>
-            <Text style={styles.inputLabel}>Currency</Text> 
-            <Dropdown
-                style={[styles.weight, isFocusWeight && { borderColor: 'blue' }]}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle} 
-                iconStyle={styles.iconStyle}
-                data={weight}
-                maxHeight={300}
-                labelField="category"
-                valueField="value"
-                placeholder={!isFocusWeight ? 'Choose ' : 'Choose'} 
-                value={weightVal}
-                onFocus={() => setIsFocusWeight(true)}
-                onBlur={() => setIsFocusWeight(false)}
-                onChange={item => {
-                  setWeight(item.value);
+                  setWeightVal(item.weight)
                   setIsFocusWeight(false);
                 }} 
               renderRightIcon={() => (
@@ -154,13 +164,44 @@ function FacilityCategoryForm({navigation}){
               )}
             />
           </View>
+          <View style={{flex: 2}}>
+            <Text style={styles.inputLabel}>Currency</Text> 
+            <Dropdown
+                style={[styles.weight, isFocusCur && { borderColor: 'blue' }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle} 
+                iconStyle={styles.iconStyle}
+                data={currency}
+                maxHeight={300}
+                labelField="currency"
+                valueField="value"
+                placeholder={!isFocusCur ? 'Choose ' : 'Choose'} 
+                value={currencyItem}
+                onFocus={() => setIsFocusCur(true)}
+                onBlur={() => setIsFocusCur(false)}
+                onChange={item => {
+                  setCurrency(item.value);
+                  setCurrencyVal(item.currency);
+                  setIsFocusCur(false);
+                }} 
+              renderRightIcon={() => (
+                <FontAwesome
+                  style={styles.icon}
+                  color={isFocusCur ? 'blue' : 'black'}
+                  name="chevron-down"
+                  size={20}
+                />
+              )}
+            />
+          </View>
         </View>  
-        <TouchableOpacity onPress={() => navigation.navigate('FacilityCategoryForm')} > 
+        <TouchableOpacity style={styles.dateList} onPress={addList} > 
                 <FontAwesome
                   style={styles.icon}
                   name="plus-circle"
                   size={23}
                 />
+               <Text style={styles.label}> Add </Text> 
         </TouchableOpacity>
       <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center'}}> 
         <TouchableOpacity onPress={() => navigation.navigate('Home')} >
@@ -227,12 +268,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginVertical: 10,
     backgroundColor: "#ffffff",
+    fontFamily: 'Ubuntu',
   },
   weight: {
     paddingHorizontal: 5,
     paddingVertical: 3,
     fontSize: 14,
     borderBottomColor: "#D7DEDD",
+    fontFamily: 'Ubuntu',
     borderBottomWidth: 1,
     marginVertical: 10,
     backgroundColor: "#ffffff",
@@ -240,7 +283,8 @@ const styles = StyleSheet.create({
   dateList: {
     display: "flex",
     flexDirection: "row",
-    margin : "1%"
+    margin : "1%",
+    justifyContent: "flex-end"
   },
   dateBox: {
     flex: 2,
@@ -249,19 +293,34 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 14,
     fontFamily: 'Ubuntu',
+    color: "#D9D9D9",
+  },
+  selectedTextStyle :{ 
+    fontSize: 14,
+    fontFamily: 'Ubuntu',
+    color: "#333333",
+  },
+  placeholderboldStyle: {
+    fontSize: 14,
+    fontFamily: 'UbuntuBold',
     color: "#333333",
   },
   dropdown: {
     backgroundColor: "#D9D9D9",
     borderRadius: 10,
     padding: 5,
-    marginBottom: 10,
+    marginVertical: 20,
     color: "#333",
     fontFamily: 'UbuntuBold',
   },
   icon: {
-    color: "#085252",
-    fontSize: 18,
+    color: "#085252", 
     marginHorizontal: 10
+  },
+  label: {
+    fontSize: 18,
+    color: "#085252",
+    fontFamily: 'UbuntuBold',
+    marginBottom: 10
   } 
 });
