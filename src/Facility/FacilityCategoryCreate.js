@@ -93,6 +93,7 @@ function FacilityCategoryForm({navigation}){
             data={data} 
             fontFamily='Ubuntu' 
             maxHeight={200} 
+            search
             activeColor="#D9D9D9"
             labelField="category"
             valueField="value"

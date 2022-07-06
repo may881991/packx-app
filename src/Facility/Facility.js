@@ -65,8 +65,8 @@ const HomeTabs = () => {
             height: 62,
             padding: 10,
             borderRadius: 10,
-            // borderTopRightRadius: 10, 
             // borderTopLeftRadius: 10, 
+            // borderTopBottomRadius: 10, 
           },
           tabBarStyle: {
             marginHorizontal : 10,
