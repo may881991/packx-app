@@ -2,18 +2,28 @@ import React , { useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Dropdown } from 'react-native-element-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet,ScrollView, SafeAreaView } from 'react-native';
 const Stack = createNativeStackNavigator();
 
 const data = [
-  { category: 'General Item', value: '1' },
-  { category: 'Clothing', value: '2' },
-  { category: 'Electronics', value: '3' },
-  { category: 'Food', value: '4' },
-  { category: 'Cosmetics', value: '5' },
-  { category: 'Watches', value: '6' },
-  { category: 'Phone', value: '7' },
-  { category: 'Custom Category', value: '8' },
+  { category: 'General Item', value: '1' , itemname:'box'},
+  { category: 'Clothing', value: '2', itemname:'tshirt' },
+  { category: 'Electronics', value: '3' , itemname:'flash'},
+  { category: 'Food', value: '4' , itemname:'utensils'},
+  { category: 'Cosmetics', value: '5' , itemname:'spa'},
+  { category: 'Watches', value: '6' , itemname:'clock'},
+  { category: 'Phone', value: '7' , itemname:'mobile-alt'},
+  { category: 'Custom Category', value: '8' , itemname:'clipboard-list'},
+];
+
+const prohibitedData = [
+  { category: 'Radioactive materials', value: '1' , itemname:'fan'},
+  { category: 'Strong Acid', value: '2', itemname:'flask' },
+  { category: 'Explosive stuffs', value: '3' , itemname:'bahai'},
+  { category: 'Cash or Money', value: '4' , itemname:'money-bill-alt'},
+  { category: 'Classified Documents', value: '5' , itemname:'folder-minus'},
+  { category: 'Alcholic Beverages', value: '6' , itemname:'glass-cheers'} 
 ];
 
 const weight = [
@@ -54,6 +64,7 @@ function FacilityCategoryForm({navigation}){
   const [categoryLists,setCategoryLists] = useState([]);
   const [value, setValue] = useState(null);
   const [category, setCategory] = useState(null);
+  const [categoryItem, setCategoryItem] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [weightItem , setWeight] = useState(null);
   const [weightVal , setWeightVal] = useState(null);
@@ -62,17 +73,32 @@ function FacilityCategoryForm({navigation}){
   const [currencyVal , setCurrencyVal] = useState(null);
   const [isFocusCur, setIsFocusCur ] = useState(false); 
   const [priceVal, onChangePrice] = useState("");
+  const [prohibitedLists,setProLists] = useState([]);
+  const [prohibitedVal, setprohibitedVal] = useState(null); 
+  const [prohibitedName,setprohibitedName] = useState([]);
+  const [prohibitedItem, setProhibitedItem] = useState(null);
+  const [isPHFocus, setIsPHFocus] = useState(false);
 
   function addList(){
     setCategoryLists(countryList => [{ 
       category: category,
+      item : categoryItem,
       weight: weightVal,
       price: priceVal,
       currency: currencyVal  
     },...countryList]);
   }
     
+  function addProList(){
+    setProLists(proLists => [{ 
+      category: prohibitedName,
+      item : prohibitedItem, 
+    },...proLists]);
+  }
+    
+    
   console.log(categoryLists)
+  console.log(prohibitedLists)
   
   return (
     <ScrollView>
@@ -81,9 +107,17 @@ function FacilityCategoryForm({navigation}){
         <Text style={styles.text}> Create New Trip </Text>
         <Text style={styles.text}> 2 of 2 </Text>
       </View>
-        <SafeAreaView style={styles.addRoute}>
-            <Text style={styles.label}>PRICIE CHART</Text> 
-        </SafeAreaView>  
+          {categoryLists.length > 0 && (
+            <ScrollView style={styles.addRoute}>
+                <Text style={styles.label}>PRICIE CHART</Text>  
+                {categoryLists.map((data ) => (
+                  <View style={styles.itembox}>
+                    <Text style={styles.itemlabel}> <FontAwesome5 style={styles.item} name={data.item} size={16} />  {data.category}</Text> 
+                    <Text style={styles.itemlabel}>{data.price} {data.currency} / {data.weight}</Text>  
+                  </View>
+                 ))}
+            </ScrollView>  
+          )}
         <Text style={styles.inputLabel}>Select pre-set categories</Text>
         <Dropdown
             style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
@@ -92,8 +126,7 @@ function FacilityCategoryForm({navigation}){
             iconStyle={styles.iconStyle}
             data={data} 
             fontFamily='Ubuntu' 
-            maxHeight={200} 
-            search
+            maxHeight={200}  
             activeColor="#D9D9D9"
             labelField="category"
             valueField="value"
@@ -105,6 +138,7 @@ function FacilityCategoryForm({navigation}){
             onChange={item => {
               setValue(item.value);
               setCategory(item.category)
+              setCategoryItem(item.itemname)
               setIsFocus(false);
             }}
             renderLeftIcon={() => (
@@ -127,7 +161,7 @@ function FacilityCategoryForm({navigation}){
         <View style={styles.addcategory}>
           <View style={styles.category}> 
             <Text style={styles.inputLabel}>Category</Text>
-            <TextInput style={styles.input} defaultValue={category} placeholder="Custom Category"/>
+            <TextInput style={styles.input} defaultValue={category} onChangeText={setCategory} placeholder="Custom Category"/>
           </View>
           <View style={styles.amount}> 
             <Text style={styles.inputLabel}>Price</Text>
@@ -204,9 +238,72 @@ function FacilityCategoryForm({navigation}){
                 />
                <Text style={styles.label}> Add </Text> 
         </TouchableOpacity>
-      <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center'}}> 
+        {prohibitedLists.length > 0 && (
+            <ScrollView style={styles.addRoute}>
+                <Text style={styles.label}>PROHIBITED ITEM</Text>  
+                {prohibitedLists.map((data ) => (
+                  <View style={styles.itembox}>
+                    <Text style={styles.itemlabel}> <FontAwesome5 style={styles.item} name={data.item} size={16} />  {data.category}</Text>  
+                  </View>
+                 ))}
+            </ScrollView>  
+          )}
+        <Text style={styles.inputLabel}>Select pre-set prohibited item</Text>
+        <Dropdown
+            style={[styles.dropdown, isPHFocus && { borderColor: 'blue' }]}
+            placeholderStyle={styles.placeholderboldStyle}
+            selectedTextStyle={styles.selectedTextStyle} 
+            iconStyle={styles.iconStyle}
+            data={prohibitedData} 
+            fontFamily='Ubuntu' 
+            maxHeight={200}  
+            activeColor="#D9D9D9"
+            labelField="category"
+            valueField="value"
+            placeholder={!isPHFocus ? 'Add prohibited item' : '...'}
+            searchPlaceholder="Search..."
+            value={prohibitedVal}
+            onFocus={() => setIsPHFocus(true)}
+            onBlur={() => setIsPHFocus(false)}
+            onChange={item => {
+              setprohibitedVal(item.value);
+              setprohibitedName(item.category)
+              setProhibitedItem(item.itemname)
+              setIsPHFocus(false);
+            }}
+            renderLeftIcon={() => (
+              <FontAwesome
+                style={styles.icon}
+                color={isPHFocus ? 'blue' : 'black'}
+                name="ban"
+                size={23}
+              />
+            )}
+            renderRightIcon={() => (
+              <FontAwesome
+                style={styles.icon}
+                color={isPHFocus ? 'blue' : 'black'}
+                name="chevron-down"
+                size={23}
+              />
+            )}
+        /> 
+        <View style={{ flex: 1 }}> 
+          <Text style={styles.inputLabel}>Prohitbited item</Text>
+          <TextInput style={styles.input} defaultValue={prohibitedName} placeholder="Custom Item"/>
+        </View>  
+         
+        <TouchableOpacity style={styles.dateList} onPress={addProList} > 
+                <FontAwesome
+                  style={styles.icon}
+                  name="plus-circle"
+                  size={23}
+                />
+               <Text style={styles.label}> Add </Text> 
+        </TouchableOpacity>
+      <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 15}}> 
         <TouchableOpacity onPress={() => navigation.navigate('Home')} >
-            <Image source={require('../assets/images/nextBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
+            <Image source={require('../assets/images/createTripBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
           </TouchableOpacity>
       </View>
     </View>
@@ -307,6 +404,7 @@ const styles = StyleSheet.create({
     color: "#333333",
   },
   dropdown: {
+    width: '80%',
     backgroundColor: "#D9D9D9",
     borderRadius: 10,
     padding: 5,
@@ -319,9 +417,22 @@ const styles = StyleSheet.create({
     marginHorizontal: 10
   },
   label: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#085252",
     fontFamily: 'UbuntuBold',
-    marginBottom: 10
-  } 
+    marginBottom: 10, 
+  },
+  item: {
+    color: "#085252", 
+  },
+  itemlabel: { 
+    fontSize: 14,
+    color: "#085252", 
+  },
+  itembox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 30
+  }
 });
