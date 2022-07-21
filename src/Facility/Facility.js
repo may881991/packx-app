@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, StatusBar, View, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, StatusBar, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FacilityHomeScreen from "./FacilityHomeScreen";
+import OrderHomeScreen from "../Order/Order";
 import FacilityCreate from './FacilityCreate';
 
 const Tab = createBottomTabNavigator();
@@ -28,16 +29,16 @@ function ProfileScreen({ navigation }) {
 }
 
 
-function OrderScreen({ navigation }) {
+function OrderScreen({ route, navigation}) {
+    const { otherParam } = route.params;
+    const tripInfo = JSON.stringify(otherParam); 
+    console.log(tripInfo)
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Order Screen!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('HOME')} />
-    </View>
+    <OrderHomeScreen data={tripInfo}/>
   );
 }
 
-function FacilityCreateScreen({ navigation }) {
+function FacilityCreateScreen( ) {
   return (
     <FacilityCreate />
   );

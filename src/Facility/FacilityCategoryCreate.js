@@ -49,7 +49,9 @@ const currency = [
   { currency: 'LAK', value: '15' },
 ];
 
-function FacilityCategoryForm({navigation}){ 
+function FacilityCategoryForm({route, navigation} ){ 
+  const tripInformation = route.params;  
+  console.log(tripInformation.otherParam)
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -95,11 +97,17 @@ function FacilityCategoryForm({navigation}){
       item : prohibitedItem, 
     },...proLists]);
   }
-    
-    
-  console.log(categoryLists)
-  console.log(prohibitedLists)
-  
+ 
+  function goToOrder(){   
+    navigation.navigate('ORDER', { 
+      otherParam: {
+        tripInfo : tripInformation.otherParam,
+        categoryLists : categoryLists,
+        prohibitedLists : prohibitedLists 
+      }
+    });
+  } 
+
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -302,7 +310,7 @@ function FacilityCategoryForm({navigation}){
                <Text style={styles.label}> Add </Text> 
         </TouchableOpacity>
       <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 15}}> 
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} >
+        <TouchableOpacity onPress={goToOrder} >
             <Image source={require('../assets/images/createTripBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
           </TouchableOpacity>
       </View>
