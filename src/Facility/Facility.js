@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FacilityHomeScreen from "./FacilityHomeScreen";
 import OrderHomeScreen from "../Order/Order";
+import OrderDetails from "../Order/OrderDetails";
 import FacilityCreate from './FacilityCreate';
 
 const Tab = createBottomTabNavigator();
@@ -29,16 +30,16 @@ function ProfileScreen({ navigation }) {
 }
 
 
-function OrderScreen({ route, navigation}) {
-    const { otherParam } = route.params;
-    const tripInfo = JSON.stringify(otherParam); 
-    console.log(tripInfo)
+function OrderScreen() {
+    // const { otherParam } = route.params;
+    // const tripInfo = JSON.stringify(otherParam); 
+    // console.log(tripInfo)
   return (
-    <OrderHomeScreen data={tripInfo}/>
+    <OrderHomeScreen />
   );
 }
 
-function FacilityCreateScreen( ) {
+function FacilityCreateScreen() {
   return (
     <FacilityCreate />
   );
@@ -95,7 +96,8 @@ export default function FacilityHome() {
     <NavigationContainer independent={true}>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/>
-        <RootStack.Screen name="CreateFacility" component={FacilityCreateScreen} options={{headerShown: false}}/>
+        <RootStack.Screen name="CreateFacility" component={FacilityCreateScreen} options={{headerShown: false}}/> 
+        <RootStack.Screen name="OrderDetail" component={OrderDetails} options={{ title: ''}}/>
       </RootStack.Navigator>
     </NavigationContainer>
   );
