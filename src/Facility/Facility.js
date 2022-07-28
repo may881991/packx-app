@@ -5,9 +5,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FacilityHomeScreen from "./FacilityHomeScreen";
+import FacilityCreate from './FacilityCreate';
 import OrderHomeScreen from "../Order/Order";
 import OrderDetails from "../Order/OrderDetails";
-import FacilityCreate from './FacilityCreate';
+import OrderBooked from "../Order/OrderBooked";
 
 const Tab = createBottomTabNavigator();
 
@@ -98,6 +99,7 @@ export default function FacilityHome() {
         <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/>
         <RootStack.Screen name="CreateFacility" component={FacilityCreateScreen} options={{headerShown: false}}/> 
         <RootStack.Screen name="OrderDetail" component={OrderDetails} options={{ title: ''}}/>
+        <RootStack.Screen name="OrderBooked" component={OrderBooked} options={{ title: ''}}/>
       </RootStack.Navigator>
     </NavigationContainer>
   );

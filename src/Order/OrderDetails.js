@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image , ScrollView} from 'react-native';
 
 function OrderDetails ({route, navigation}) {
   const tripData = route.params.otherParam;  
@@ -16,7 +16,7 @@ function OrderDetails ({route, navigation}) {
     });
   }, [navigation]);
     return (
-      <View style={styles.container}> 
+      <ScrollView style={styles.container}> 
         <View style={styles.tripHeader}> 
           <Text style={styles.mainText}>TRIP NUMBER - {tripData.tripID}</Text> 
         </View>
@@ -34,7 +34,7 @@ function OrderDetails ({route, navigation}) {
             <Text style={styles.dateText}>{tripData.tripInfo.pickUpDate}</Text>
           </View>
           <View style={{flex: 2 ,flexDirection: "row",justifyContent: "center", alignItems:"center" }}> 
-            <Text style={styles.title}>TOTAL {tripData.packageLists}</Text>
+            <Text style={styles.title}>TOTAL {tripData.categoryLists.length}</Text>
             <Image source={require('../assets/images/Package.png')} style={{ width: 28,resizeMode: 'center', height: 27 , margin: 10}}/>
           </View>
         </View> 
@@ -55,12 +55,35 @@ function OrderDetails ({route, navigation}) {
         <View style={styles.tripHeader}> 
           <Text style={styles.mainText}>Tracking Status : {tripData.trackingStatus}</Text> 
         </View>
-        <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 15}}> 
-          <TouchableOpacity>
-              <Image source={require('../assets/images/shipBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
-            </TouchableOpacity>
-        </View>
-      </View>
+        <ScrollView>
+        {tripData.packages.map((item, index) => (
+          <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('OrderBooked', { otherParam: item})}>
+              <View style={{flex: 1, alignContent: "center"}}> 
+                <Image source={item.userInfo.profileImg} style={{ width: 52,resizeMode: 'center', height: 52 }}/>
+              </View>
+              <View style={{flex: 2, alignItems: 'flex-start'}}>
+                <Text style={styles.title}>{item.userInfo.username}</Text> 
+                <Text style={styles.text}>Confirmed </Text>
+              </View>
+              <View style={{flex: 1 ,flexDirection: "column" }}>
+                <View style={styles.itemCount}>
+                  <Text style={styles.title}>{item.items.length}</Text>
+                  <Image source={require('../assets/images/Package.png')} style={{ width: 28,resizeMode: 'center', height: 27, marginBottom: 10 }}/> 
+                </View> 
+                <View style={styles.itemCount}>
+                  <Text style={styles.text}>{item.status}</Text>
+                  <Image source={require('../assets/images/cashImg.png')} style={{ width: 28,resizeMode: 'center', height: 20}}/> 
+                </View> 
+              </View>
+          </TouchableOpacity>
+         ))} 
+         </ScrollView>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}> 
+              <TouchableOpacity>
+                <Image source={require('../assets/images/shipBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
+              </TouchableOpacity>
+          </View>
+      </ScrollView>
     );
 };
 
@@ -69,18 +92,25 @@ export default OrderDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 20 
+    paddingHorizontal: 20 ,
+    backgroundColor: '#FAFAFA'
   },
   mainText: {
     fontSize: 18,
     fontFamily: 'UbuntuMedium',
     padding : 10, 
   }, 
-  title: {
-    marginBottom: 10,
-    color: "#185354",
-    fontSize: 14,
+  text:{ 
+    fontSize: 13,
     fontFamily: "UbuntuMedium", 
+    textTransform: 'capitalize',
+  },
+  title: { 
+    color: "#185354",
+    fontSize: 16,
+    fontFamily: "UbuntuMedium", 
+    textTransform: 'uppercase',
+    paddingVertical: "3%"
   },
   numberText:{ 
     color:  '#169393', 
@@ -95,9 +125,9 @@ const styles = StyleSheet.create({
   tripList: {
     display: "flex",
     flexDirection: "row", 
-    padding: 10,   
+    padding: "2%",   
     borderTopColor: '#E5F1F2',
-    borderTopWidth: 2,
+    borderTopWidth: 1,
   },
   triplabel: {
     fontSize: 12,
@@ -130,5 +160,21 @@ const styles = StyleSheet.create({
   locText: {
     fontSize: 12,
     paddingLeft: 5 
+  },
+  item: {
+    flex: 1,
+    flexDirection: 'row',
+    color: "#185354",
+    fontSize: 14,
+    backgroundColor: "#E5F1F2",
+    borderRadius: 20,
+    paddingHorizontal: "5%",
+    paddingVertical: "5%",
+    marginBottom: "3%",
+  },
+  itemCount : {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: 'space-between', 
   }
 });

@@ -25,6 +25,20 @@ function OrderLists({navigation}){
             "item": "mobile-alt",
             "weight": "lb",
             "price": "200",
+            "currency": "USD",
+          }, 
+          {
+            "category": "Clothing",
+            "item": "tshirt",
+            "weight": "lb",
+            "price": "200",
+            "currency": "USD"
+          }, 
+          {
+            "category": "Electronics",
+            "item": "flash",
+            "weight": "lb",
+            "price": "200",
             "currency": "USD"
           }, 
           {
@@ -44,8 +58,121 @@ function OrderLists({navigation}){
             "category": "Strong Acid",
             "item": "flask",
           }],
-          "trackingStatus" : "On Route",
-          "packageLists" : "7"        
+          "trackingStatus" : "Reserved",
+          "packages" : [
+            {
+              "packageId" : "6385599269874a0e9b199760",
+              "userInfo": {
+                "username" : "STELLA",
+                "profileImg" : require("../assets/images/profile1.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "paid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "JASON",
+                "profileImg" : require("../assets/images/profile2.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "EMILY",
+                "profileImg" : require("../assets/images/profile3.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "paid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "LILY",
+                "profileImg" : require("../assets/images/profile4.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }
+          ]
       },
       {
         "tripID": "00002",
@@ -86,7 +213,120 @@ function OrderLists({navigation}){
             "item": "flask",
           }],
           "trackingStatus" : "Reserved",
-          "packageLists" : "6"    
+          "packages" : [
+            {
+              "packageId" : "6385599269874a0e9b199760",
+              "userInfo": {
+                "username" : "STELLA",
+                "profileImg" : require("../assets/images/profile1.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "paid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "JASON",
+                "profileImg" : require("../assets/images/profile2.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "EMILY",
+                "profileImg" : require("../assets/images/profile3.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "LILY",
+                "profileImg" : require("../assets/images/profile4.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }
+          ]
       },
       {
         "tripID": "00003",
@@ -110,6 +350,13 @@ function OrderLists({navigation}){
             "currency": "USD"
           }, 
           {
+            "category": "Electronics",
+            "item": "flash",
+            "weight": "lb",
+            "price": "200",
+            "currency": "USD"
+          }, 
+          {
             "category": "General Item",
             "item": "box",
             "weight": "lb",
@@ -127,14 +374,122 @@ function OrderLists({navigation}){
             "item": "flask",
           }],
           "trackingStatus" : "Received",
-          "packageLists" : "5" 
+          "packages" : [
+            {
+              "packageId" : "6385599269874a0e9b199760",
+              "userInfo": {
+                "username" : "STELLA",
+                "profileImg" : require("../assets/images/profile1.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "paid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "JASON",
+                "profileImg" : require("../assets/images/profile2.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "EMILY",
+                "profileImg" : require("../assets/images/profile3.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "paid" 
+            }, 
+            {
+              "packageId" : "fda15a2e7bc04e8ba39d6830",
+              "userInfo": {
+                "username" : "LILY",
+                "profileImg" : require("../assets/images/profile4.png"),
+              },
+              "items" :  [
+                {
+                  "description" : "iPhone 12 pro",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "New Balance 550",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                },
+                {
+                  "description" : "M.J. Daisy Perfume",
+                  "quality" : "1",
+                  "weight" : "200kg",
+                  "price" : "100$"
+                } 
+              ],
+              "status" : "unpaid" 
+            }
+          ]
       }
-  ];
-  function goToDetail(data){   
-    navigation.navigate('OrderDetail', { 
-      otherParam: data
-    });
-  } 
+  ]; 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -162,7 +517,7 @@ function OrderLists({navigation}){
                 <Text style={styles.dateText}>{item.tripInfo.pickUpDate}</Text>
               </View>
               <View style={{flex: 2 ,flexDirection: "row",justifyContent: "center", alignItems:"center" }}>
-                <Text style={styles.title}>{item.packageLists}</Text>
+                <Text style={styles.title}>{item.categoryLists.length}</Text>
                 <Image source={require('../assets/images/Supplier.png')} style={{ width: 28,resizeMode: 'center', height: 20 }}/>
               </View>
               </View> 
