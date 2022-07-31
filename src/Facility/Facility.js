@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FacilityHomeScreen from "./FacilityHomeScreen";
 import FacilityCreate from './FacilityCreate';
+import ProfileHomeScreen from "../Profile/Profile";
 import OrderHomeScreen from "../Order/Order";
 import OrderDetails from "../Order/OrderDetails";
 import OrderBooked from "../Order/OrderBooked";
@@ -21,12 +22,9 @@ function InBoxScreen({ navigation }) {
   );
 }
 
-function ProfileScreen({ navigation }) {
+function ProfileScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile Screen!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('HOME')} />
-    </View>
+    <ProfileHomeScreen />
   );
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { View, Text, StyleSheet, TouchableOpacity, Image , ScrollView} from 'react-native';
 
 export default function OrderBooked ({route, navigation}) {
@@ -40,7 +39,7 @@ export default function OrderBooked ({route, navigation}) {
                 </View>
             </View>  
         </View>  
-        <View style={{flex: 7}}>
+        <View style={{flex: 6}}>
             <View style={styles.tripHeader}> 
                 <Text style={styles.mainText}>RESERVED ITEMS</Text> 
             </View>
@@ -67,7 +66,7 @@ export default function OrderBooked ({route, navigation}) {
                  <Text style={styles.totalLabel}>116 USD</Text> 
             </View>
         </View>    
-          <View style={{ flex: 1, flexDirection: "column", justifyContent: 'center' , alignItems: 'center'}}> 
+          <View style={{ flex: 2, flexDirection: "column", justifyContent: 'center' , alignItems: 'center', marginBottom: 10 }}> 
               <TouchableOpacity>
                 <Image source={require('../assets/images/confirmBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45, marginBottom: 10 }}/>
               </TouchableOpacity>
@@ -84,7 +83,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20 ,
-    backgroundColor: '#FAFAFA'
+    backgroundColor: '#FAFAFA', 
+    fontFamily: "Ubuntu",
   },
   mainText: {
     fontSize: 18,
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
   dectext: {
     flex: 3, 
     fontSize: 13, 
-    fontFamily: "Ubuntu",
     textTransform: 'capitalize' 
   },
   totalLabel: {

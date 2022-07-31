@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [loaded] = useFonts({
+    UbuntuLight: require('./src/assets/fonts/Ubuntu-Light.ttf'),
     Ubuntu: require('./src/assets/fonts/Ubuntu-Regular.ttf'),
     UbuntuMedium: require('./src/assets/fonts/Ubuntu-Medium.ttf'),
     UbuntuBold: require('./src/assets/fonts/Ubuntu-Bold.ttf'),
