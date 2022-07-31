@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, StatusBar, View, Button } from 'react-native';
+import { StyleSheet, Text, StatusBar, View, Button ,TouchableOpacity, Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -22,7 +22,15 @@ function InBoxScreen({ navigation }) {
   );
 }
 
-function ProfileScreen() {
+function ProfileScreen({navigation}) {
+  navigation.setOptions({
+    headerLeft: () => (
+      <TouchableOpacity style={{flex:1, flexDirection: 'row'}} onPress={() => navigation.goBack()}>
+        <Image source={require('../assets/images/back-arrow.png')} style={{ width: 28,resizeMode: 'center', height: 28, marginLeft: 10, }}/>
+        <Text style={{color: "#c8c8c8", paddingLeft: 10, paddingTop: 2, fontSize: 18}}>Back to Home</Text>
+      </TouchableOpacity>
+    )
+  });
   return (
     <ProfileHomeScreen />
   );
@@ -60,14 +68,15 @@ const HomeTabs = () => {
               iconName = 'person-outline';
             }
             color = focused ? '#ffffff' : '#085252';
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <>
+            <Ionicons name={iconName} size={size} color={color} style={{ paddingTop: 5 }}/>
+            <Text style={{fontFamily: "UbuntuMedium",fontSize: 12, color: color, paddingTop: 5 }} color={color}>{route.name} </Text>
+            </>;
           }, 
           tabBarItemStyle:{
             height: 62,
             padding: 10,
-            borderRadius: 10,
-            // borderTopLeftRadius: 10, 
-            // borderTopBottomRadius: 10, 
+            borderRadius: 10 
           },
           tabBarStyle: {
             marginHorizontal : 10,
@@ -81,10 +90,10 @@ const HomeTabs = () => {
           tabBarActiveBackgroundColor: "#1B9494"
         })}
       >
-        <Tab.Screen name="HOME" component={FacilityHomeScreen} options={{headerShown: false}}/>
-        <Tab.Screen name="ORDER" component={OrderScreen} options={{headerShown: false}}/>
-        <Tab.Screen name="INBOX" component={InBoxScreen} options={{headerShown: false}}/>
-        <Tab.Screen name="PROFILE" component={ProfileScreen} options={{headerShown: false}}/>
+        <Tab.Screen name="HOME" component={FacilityHomeScreen} options={{headerShown: false, title:  ''}}/>
+        <Tab.Screen name="ORDER" component={OrderScreen} options={{headerShown: false, title:  ''}}/>
+        <Tab.Screen name="INBOX" component={InBoxScreen} options={{headerShown: false, title:  ''}}/>
+        <Tab.Screen name="PROFILE" component={ProfileScreen} options={{ title:  ''}}/>
       </Tab.Navigator>
   ); 
 }
@@ -107,5 +116,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-  }
+  } 
 });
