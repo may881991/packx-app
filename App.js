@@ -25,7 +25,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" >
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-        <Stack.Screen name="Details" component={DetailsScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="User" component={UserInfoScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn" component={FacilitySignIn} options={{headerShown: false}}/>
         <Stack.Screen name="FacilityHome" component={FacilityHomeScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
@@ -43,10 +43,10 @@ function HomeScreen({ navigation }) {
         <Intro />
       </View>
       <View style={styles.socialBtn}>
-            <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+            <TouchableOpacity onPress={() => navigation.navigate('User')}>
               <Image source={require('./src/assets/images/gbutton.png')} style={{ width: 130,resizeMode: 'center', height: 44, marginRight: "5%"}}/>
               </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Details')} >
+          <TouchableOpacity onPress={() => navigation.navigate('User')} >
             <Image source={require('./src/assets/images/fbutton.png')} style={{ width: 130,resizeMode: 'center', height: 44}}/>
           </TouchableOpacity>
       </View>
@@ -59,7 +59,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function DetailsScreen() {
+function UserInfoScreen() {
   return (
     <UserScreen />
   );

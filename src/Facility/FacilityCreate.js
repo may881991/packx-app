@@ -176,8 +176,8 @@ export default FacilityCreateScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    marginHorizontal: 20
+    flex: 1,
+    marginHorizontal: "4%"
   },
   header: {
     flex: 1,

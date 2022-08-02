@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container:{
       flex: 1, 
       justifyContent: 'flex-start',
-      marginHorizontal: "4%"
+      paddingHorizontal: "4%"
   }, 
   input: {
     padding: "3%",

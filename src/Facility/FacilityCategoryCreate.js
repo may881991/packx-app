@@ -323,8 +323,8 @@ export default FacilityCategoryForm;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    marginHorizontal: 20
+    flex: 1,
+    marginHorizontal: "4%"
   },
   header: {
     flex: 1,

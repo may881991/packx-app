@@ -1,10 +1,10 @@
 import React from 'react'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { View, Text, StyleSheet, Image , TouchableOpacity, ScrollView} from 'react-native';
-import OrderDetails from './OrderDetails';
+import { useTheme } from '@react-navigation/native'; 
+import { View,SafeAreaView, Text, StyleSheet, Image , StatusBar, TouchableOpacity, ScrollView} from 'react-native'; 
 
-function OrderLists({navigation}){   
+function OrderLists({navigation}){ 
+  const theme = useTheme();  
   let tripData = [
       {
         "tripID": "00001",
@@ -491,40 +491,45 @@ function OrderLists({navigation}){
       }
   ]; 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.mainText}> ORDER </Text>
-        <Text style={styles.text}> TRIP LIST  </Text>
-      </View>
-      <View style={styles.itemLists}>
-        {tripData.map((item, index) => (
-          <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('OrderDetail', { otherParam: item})}>
-            <View style={styles.tripHeader}> 
-              <Text style={styles.title}>TRIP NUMBER - <Text style={styles.numberText}>{item.tripID} | </Text></Text>
-              <Text style={styles.title}>Tracking : {item.trackingStatus}</Text>
-            </View>
-            <View style={styles.tripList}>
-              <View style={{flex: 2}}>
-                <Text style={styles.triplabel}>From</Text>
-                <Text style={styles.tripname}>{item.tripInfo.dropOff}</Text>
-                <Text style={styles.datelabel}>Last Drop Off</Text>
-                <Text style={styles.dateText}>{item.tripInfo.dropOffDate}</Text>
+    <View style={{ flex: 1 }}>
+      <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.mainText}> ORDER </Text>
+          <Text style={styles.text}> TRIP LIST  </Text>
+        </View>
+        <View style={styles.itemLists}>
+          {tripData.map((item, index) => (
+            <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('OrderDetail', { otherParam: item})}>
+              <View style={styles.tripHeader}> 
+                <Text style={styles.title}>TRIP NUMBER - <Text style={styles.numberText}>{item.tripID} | </Text></Text>
+                <Text style={styles.title}>Tracking : {item.trackingStatus}</Text>
               </View>
-              <View style={{flex: 2}}>
-                <Text style={styles.triplabel}>To</Text>
-                <Text style={styles.tripname}>{item.tripInfo.desVal}</Text>
-                <Text style={styles.datelabel}>Est. Arrival</Text>
-                <Text style={styles.dateText}>{item.tripInfo.pickUpDate}</Text>
-              </View>
-              <View style={{flex: 2 ,flexDirection: "row",justifyContent: "center", alignItems:"center" }}>
-                <Text style={styles.title}>{item.categoryLists.length}</Text>
-                <Image source={require('../assets/images/Supplier.png')} style={{ width: 28,resizeMode: 'center', height: 20 }}/>
-              </View>
-              </View> 
-          </TouchableOpacity> 
-        ))} 
-       </View> 
-    </ScrollView>
+              <View style={styles.tripList}>
+                <View style={{flex: 2}}>
+                  <Text style={styles.triplabel}>From</Text>
+                  <Text style={styles.tripname}>{item.tripInfo.dropOff}</Text>
+                  <Text style={styles.datelabel}>Last Drop Off</Text>
+                  <Text style={styles.dateText}>{item.tripInfo.dropOffDate}</Text>
+                </View>
+                <View style={{flex: 2}}>
+                  <Text style={styles.triplabel}>To</Text>
+                  <Text style={styles.tripname}>{item.tripInfo.desVal}</Text>
+                  <Text style={styles.datelabel}>Est. Arrival</Text>
+                  <Text style={styles.dateText}>{item.tripInfo.pickUpDate}</Text>
+                </View>
+                <View style={{flex: 2 ,flexDirection: "row",justifyContent: "center", alignItems:"center" }}>
+                  <Text style={styles.title}>{item.categoryLists.length}</Text>
+                  <Image source={require('../assets/images/Supplier.png')} style={{ width: 28,resizeMode: 'center', height: 20 }}/>
+                </View>
+                </View> 
+            </TouchableOpacity> 
+          ))} 
+        </View> 
+        </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 } 
 
@@ -540,12 +545,12 @@ export default function OrderScreen(info) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,  
-    marginHorizontal: 20
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    marginHorizontal: "4%"
   },
   header: { 
-    flexDirection: 'column', 
-    paddingTop: 30,
+    flexDirection: 'column',
     paddingBottom: 10
   },
   mainText: {

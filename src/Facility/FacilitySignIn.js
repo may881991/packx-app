@@ -3,11 +3,7 @@ import { SafeAreaView, StyleSheet, TextInput, View, Image, Text , Button} from "
 
 const FacilitySignIn = (props) => {
   const [text, onChangeText] = React.useState("johndoe@example.com");
-  const [password, onChangePassword] = React.useState("password");
-
-  function onButtonPress() {
-    this.props.navigation.navigate('DetailsScreen');
-  }
+  const [password, onChangePassword] = React.useState("password"); 
 
   return (
     <View style={styles.signInContainer}>

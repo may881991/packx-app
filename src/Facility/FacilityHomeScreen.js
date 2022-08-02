@@ -8,8 +8,7 @@ import Lists from '../components/Lists/Lists';
 
 const Stack = createNativeStackNavigator();
 
-function FacilityMainScreen({navigation}){ 
-  const { colors } = useTheme();
+function FacilityMainScreen({navigation}){  
   const theme = useTheme();
   const tripData = [
     {
@@ -42,7 +41,7 @@ function FacilityMainScreen({navigation}){
       <ScrollView>
         <SafeAreaView style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('CreateFacility')} style={styles.createBtn}>
-              <Ionicons name="add-circle-outline" size={30}/>
+              <Ionicons name="add-circle-outline" size={35}/>
               <Text style={styles.text}>
                 Create New Trip
               </Text>
@@ -111,14 +110,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 20,
+    marginHorizontal: "4%"
   },
   createBtn:{
     flex: 1,
     flexDirection: 'row',
     alignItems: "center",
     justifyContent: "flex-start",
-    marginHorizontal: 30,
+    marginHorizontal: 10,
     marginVertical: 10,
   },
   header: {
