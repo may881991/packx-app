@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View , Image, Pressable, Text, TouchableOpacity} from 'react-native';
 import Intro from './src/Intro/Intro';
 import UserScreen from './src/User/User';
+import ShowTripLists from './src/User/UserHome';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,6 +27,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home" >
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
         <Stack.Screen name="User" component={UserInfoScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="UserHome" component={UserHomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn" component={FacilitySignIn} options={{headerShown: false}}/>
         <Stack.Screen name="FacilityHome" component={FacilityHomeScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
@@ -59,9 +61,16 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function UserInfoScreen() {
-  return (
-    <UserScreen />
+function UserInfoScreen({ navigation }) {
+  return ( 
+    <View style={styles.container}>
+      <UserScreen style={{ flex: 8}}/>
+      <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center'}}>  
+          <TouchableOpacity onPress={() => navigation.navigate('UserHome')}>
+            <Image source={require('./src/assets/images/saveBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
+          </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -84,12 +93,19 @@ function FacilityHomeScreen() {
   return (
     <FacilityHome />
   );
+} 
+
+function UserHomeScreen() {
+  return (
+    <ShowTripLists />
+  );
 }
 
 const styles = StyleSheet.create({
   container:{
       flex: 1,
-      flexDirection: "column", 
+      flexDirection: "column",  
+      paddingHorizontal: 20 ,
       backgroundColor: "#FAFAFA"
   },
   logoBox : {

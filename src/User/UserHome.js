@@ -3,11 +3,11 @@ import { StyleSheet, Text, StatusBar, View, Button ,TouchableOpacity, Image} fro
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FacilityHomeScreen from "./FacilityHomeScreen";
-import FacilityCreate from './FacilityCreate';
-import ProfileHomeScreen from "../Profile/Profile";
+import Ionicons from 'react-native-vector-icons/Ionicons';  
 import OrderHomeScreen from "../Order/Order";
+import FacilityCreate from '../Facility/FacilityCreate';
+import ProfileHomeScreen from "../Profile/Profile";  
+import TripScreen from '../Trip/Trip';
 import OrderDetails from "../Order/OrderDetails";
 import OrderBooked from "../Order/OrderBooked";
 
@@ -29,10 +29,7 @@ function ProfileScreen( ) {
 }
 
 
-function OrderScreen() {
-    // const { otherParam } = route.params;
-    // const tripInfo = JSON.stringify(otherParam); 
-    // console.log(tripInfo)
+function OrderScreen() { 
   return (
     <OrderHomeScreen />
   );
@@ -88,7 +85,7 @@ const HomeTabs = () => {
           )
         })}
       >
-        <Tab.Screen name="HOME" component={FacilityHomeScreen} options={{headerShown: false, title:  ''}}/>
+        <Tab.Screen name="HOME" component={TripScreen} options={{headerShown: false, title:  ''}}/>
         <Tab.Screen name="ORDER" component={OrderScreen} options={{headerShown: false, title:  ''}}/>
         <Tab.Screen name="INBOX" component={InBoxScreen} options={{headerShown: false, title:  ''}}/>
         <Tab.Screen name="PROFILE" component={ProfileScreen} options={{ title:  ''}}/>
@@ -97,12 +94,11 @@ const HomeTabs = () => {
 }
 
 const RootStack = createNativeStackNavigator();
-export default function FacilityHome() {
+export default function UserHome() {
   return (
     <NavigationContainer independent={true}>
       <RootStack.Navigator>
-        <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/>
-        <RootStack.Screen name="CreateFacility" component={FacilityCreateScreen} options={{headerShown: false}}/> 
+        <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/> 
         <RootStack.Screen name="OrderDetail" component={OrderDetails} options={{ title: ''}}/>
         <RootStack.Screen name="OrderBooked" component={OrderBooked} options={{ title: ''}}/>
       </RootStack.Navigator>
@@ -114,6 +110,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    paddingHorizontal: 20 ,
   } 
 });

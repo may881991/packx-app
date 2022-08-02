@@ -22,10 +22,9 @@ const styles = StyleSheet.create({
   }
 }); 
  
-export default class UserScreen extends React.Component { 
-  render() { 
+ export default function UserScreen()  { 
     return (
-      <View style={styles.container}>  
+      <>
          <View style={{ flex: 3 , justifyContent: 'center' , alignItems: 'center'  }}>
             <TouchableOpacity>
               <Image source={require('../assets/images/photoFrame.png')} style={{ width: 85,resizeMode: 'center', height: 89, marginBottom: '2%'}}/>
@@ -52,12 +51,6 @@ export default class UserScreen extends React.Component {
               <TextInput style={styles.input}  placeholder="+957xxxxxxxx"/>
             </ScrollView> 
           </View>
-          <View style={{ flex: 1, flexDirection: "column", justifyContent: 'center' , alignItems: 'center', marginBottom: 10 }}>  
-              <TouchableOpacity>
-                <Image source={require('../assets/images/saveBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
-              </TouchableOpacity>
-          </View>
-      </View>
-    )
-  }
+      </>
+    ) 
 }
