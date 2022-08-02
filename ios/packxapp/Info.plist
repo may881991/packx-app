@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>packX-test</string>
+    <string>packx-app</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -28,6 +28,12 @@
           <string>com.packx.booking</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.733915356363-dj1sksrarhfofhhrlf7b1vs576dj0n2j</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
@@ -46,17 +52,6 @@
         </dict>
       </dict>
     </dict>
-    <key>UIAppFonts</key>
-    <array>
-      <string>Ubuntu-Bold.ttf</string>
-      <string>Ubuntu-BoldItalic.ttf</string>
-      <string>Ubuntu-Italic.ttf</string>
-      <string>Ubuntu-Light.ttf</string>
-      <string>Ubuntu-LightItalic.ttf</string>
-      <string>Ubuntu-Medium.ttf</string>
-      <string>Ubuntu-MediumItalic.ttf</string>
-      <string>Ubuntu-Regular.ttf</string>
-    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

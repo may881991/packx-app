@@ -128,8 +128,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: "#185354",
     fontSize: 14, 
-    paddingHorizontal: "5%",
-    paddingBottom: "3%", 
+    paddingHorizontal: "5%" 
   },
   icon: {
     color: "#185354",

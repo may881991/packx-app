@@ -17,20 +17,12 @@ function InBoxScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>InBox Screen!</Text>
-      <Button title="Go to Setting" onPress={() => navigation.navigate('Settings')} />
+      <Button title="Go to Home" onPress={() => navigation.navigate('HOME')} />
     </View>
   );
 }
 
-function ProfileScreen({navigation}) {
-  navigation.setOptions({
-    headerLeft: () => (
-      <TouchableOpacity style={{flex:1, flexDirection: 'row'}} onPress={() => navigation.goBack()}>
-        <Image source={require('../assets/images/back-arrow.png')} style={{ width: 28,resizeMode: 'center', height: 28, marginLeft: 10, }}/>
-        <Text style={{color: "#c8c8c8", paddingLeft: 10, paddingTop: 2, fontSize: 18}}>Back to Home</Text>
-      </TouchableOpacity>
-    )
-  });
+function ProfileScreen( ) { 
   return (
     <ProfileHomeScreen />
   );
@@ -55,7 +47,7 @@ function FacilityCreateScreen() {
 const HomeTabs = () => {
   return (
       <Tab.Navigator
-        screenOptions={({ route }) => ({
+        screenOptions={({ route , navigation}) => ({
           tabBarIcon: ({focused, color, size }) => {
             let iconName;
             if (route.name === 'HOME') {
@@ -87,7 +79,13 @@ const HomeTabs = () => {
           },
           tabBarActiveTintColor: '#ffffff',
           tabBarInactiveTintColor: '#085252',
-          tabBarActiveBackgroundColor: "#1B9494"
+          tabBarActiveBackgroundColor: "#1B9494",
+          headerLeft: () => (
+            <TouchableOpacity style={{flex:1, flexDirection: 'row'}} onPress={() => navigation.goBack()}>
+              <Image source={require('../assets/images/back-arrow.png')} style={{ width: 28,resizeMode: 'center', height: 28, marginLeft: 10, }}/>
+              <Text style={{color: "#c8c8c8", paddingLeft: 10, paddingTop: 2, fontSize: 18}}>Back to Home</Text>
+            </TouchableOpacity>
+          )
         })}
       >
         <Tab.Screen name="HOME" component={FacilityHomeScreen} options={{headerShown: false, title:  ''}}/>

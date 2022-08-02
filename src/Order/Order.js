@@ -545,7 +545,7 @@ const styles = StyleSheet.create({
   },
   header: { 
     flexDirection: 'column', 
-    paddingTop: 60,
+    paddingTop: 30,
     paddingBottom: 10
   },
   mainText: {

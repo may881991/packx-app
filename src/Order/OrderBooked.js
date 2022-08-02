@@ -15,30 +15,28 @@ export default function OrderBooked ({route, navigation}) {
     });
   }, [navigation]);
     return (
-      <View style={styles.container}> 
-        <View style={{flex: 2}}>
-            <View style={styles.tripHeader}> 
-                <Text style={styles.mainText}>BOOKED ORDER</Text> 
+      <View style={styles.container}>  
+        <View style={styles.tripHeader}> 
+            <Text style={styles.mainText}>BOOKED ORDER</Text> 
+        </View>
+        <View style={styles.item}> 
+            <View style={{flex: 1, alignContent: "center"}}> 
+                <Image source={userData.userInfo.profileImg} style={{ width: 52,resizeMode: 'center', height: 52 }}/>
+            </View> 
+            <View style={{flex: 2, alignItems: 'flex-start'}}>
+                <Text style={styles.title}>{userData.userInfo.username}</Text>  
             </View>
-            <View style={styles.item}> 
-                <View style={{flex: 1, alignContent: "center"}}> 
-                    <Image source={userData.userInfo.profileImg} style={{ width: 52,resizeMode: 'center', height: 52 }}/>
+            <View style={{flex: 1 ,flexDirection: "column" }}>
+                <View style={styles.itemCount}>
+                <Text style={styles.title}>{userData.items.length}</Text>
+                <Image source={require('../assets/images/Package.png')} style={{ width: 28,resizeMode: 'center', height: 27, marginBottom: 10 }}/> 
                 </View> 
-                <View style={{flex: 2, alignItems: 'flex-start'}}>
-                    <Text style={styles.title}>{userData.userInfo.username}</Text>  
-                </View>
-                <View style={{flex: 1 ,flexDirection: "column" }}>
-                    <View style={styles.itemCount}>
-                    <Text style={styles.title}>{userData.items.length}</Text>
-                    <Image source={require('../assets/images/Package.png')} style={{ width: 28,resizeMode: 'center', height: 27, marginBottom: 10 }}/> 
-                    </View> 
-                    <View style={styles.itemCount}>
-                    <Text style={styles.text}>{userData.status}</Text>
-                    <Image source={require('../assets/images/cashImg.png')} style={{ width: 28,resizeMode: 'center', height: 20}}/> 
-                    </View> 
-                </View>
-            </View>  
-        </View>  
+                <View style={styles.itemCount}>
+                <Text style={styles.text}>{userData.status}</Text>
+                <Image source={require('../assets/images/cashImg.png')} style={{ width: 28,resizeMode: 'center', height: 20}}/> 
+                </View> 
+            </View>
+        </View>    
         <View style={{flex: 6}}>
             <View style={styles.tripHeader}> 
                 <Text style={styles.mainText}>RESERVED ITEMS</Text> 
@@ -84,15 +82,15 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20 ,
     backgroundColor: '#FAFAFA', 
-    fontFamily: "Ubuntu",
   },
   mainText: {
     fontSize: 18,
     fontFamily: 'UbuntuMedium',
-    paddingVertical :  "4%", 
+    marginVertical :  "4%", 
   }, 
   text:{ 
     fontSize: 12, 
+    fontFamily: "Ubuntu",
     textTransform: 'capitalize',
     flex: 1,
   },
@@ -103,8 +101,12 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     paddingVertical: "3%"
   }, 
-  item: {
-    flex: 1,
+  tripHeader:{  
+    display: 'flex',
+    marginVertical: "1%",
+  },
+  item: { 
+    display: 'flex',
     flexDirection: 'row',
     color: "#185354",
     fontSize: 14,
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: "5%",
     paddingVertical: "5%",
-    marginBottom: "3%",
   },
   itemCount : {
     flex: 1,
@@ -169,7 +170,8 @@ const styles = StyleSheet.create({
   dectext: {
     flex: 3, 
     fontSize: 13, 
-    textTransform: 'capitalize' 
+    textTransform: 'capitalize',
+    fontFamily: "Ubuntu",
   },
   totalLabel: {
     fontSize: 13,

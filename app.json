@@ -1,16 +1,19 @@
 {
   "expo": {
-    "name": "packX-test",
-    "slug": "packX-test",
+    "name": "packx-app",
+    "slug": "packx-app",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
     "android": {
-      "package": "com.packx.booking"
+      "package": "com.packx.booking",
+      "googleServicesFile": "./google-services.json"
     },
     "ios": {
-      "bundleIdentifier": "com.packx.booking"
-    }
+      "bundleIdentifier": "com.packx.booking",
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "plugins": ["@react-native-google-signin/google-signin"]
   }
 }

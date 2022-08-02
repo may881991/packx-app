@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "packXtest.app"
-               BlueprintName = "packXtest"
-               ReferencedContainer = "container:packXtest.xcodeproj">
+               BuildableName = "packxapp.app"
+               BlueprintName = "packxapp"
+               ReferencedContainer = "container:packxapp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "packXtestTests.xctest"
-               BlueprintName = "packXtestTests"
-               ReferencedContainer = "container:packXtest.xcodeproj">
+               BuildableName = "packxappTests.xctest"
+               BlueprintName = "packxappTests"
+               ReferencedContainer = "container:packxapp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "packXtest.app"
-            BlueprintName = "packXtest"
-            ReferencedContainer = "container:packXtest.xcodeproj">
+            BuildableName = "packxapp.app"
+            BlueprintName = "packxapp"
+            ReferencedContainer = "container:packxapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "packXtest.app"
-            BlueprintName = "packXtest"
-            ReferencedContainer = "container:packXtest.xcodeproj">
+            BuildableName = "packxapp.app"
+            BlueprintName = "packxapp"
+            ReferencedContainer = "container:packxapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

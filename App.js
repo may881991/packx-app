@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View , Image, Pressable, Text, TouchableOpacity} from 'react-native';
 import Intro from './src/Intro/Intro';
-import Home from './src/Home/Home';
+import UserScreen from './src/User/User';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,7 +25,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" >
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn" component={FacilitySignIn} options={{headerShown: false}}/>
         <Stack.Screen name="FacilityHome" component={FacilityHomeScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
@@ -61,7 +61,7 @@ function HomeScreen({ navigation }) {
 
 function DetailsScreen() {
   return (
-    <Home />
+    <UserScreen />
   );
 }
 

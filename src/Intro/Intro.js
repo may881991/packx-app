@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import HomeScreen from '../Home/Home';
+import UserScreen from '../User/User';
 
 const styles = StyleSheet.create({
   container:{
@@ -76,7 +76,7 @@ export default class App extends React.Component {
   }
   render() {
     if (this.state.showRealApp) {
-      return <HomeScreen />;
+      return <UserScreen />;
     } else {
       return <AppIntroSlider 
         renderItem={this._renderItem} 
