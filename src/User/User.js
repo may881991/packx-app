@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
               <Image source={require('../assets/images/uploadBtn.png')} style={{ width: 83,resizeMode: 'center', height: 30}}/>
             </TouchableOpacity> 
           </View>
-          <View  style={{flex: 8}}>
+          <View style={{flex: 8}}>
             <ScrollView>
               <Text style={styles.inputLabel}>First Name</Text>
               <TextInput style={styles.input}  placeholder="First Name"/>

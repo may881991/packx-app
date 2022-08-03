@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
   triplabel: {
     fontSize: 12,
     marginBottom: 8,
-    color: "rgba(23,25,48,0.6)"
+    color: "rgba(23,25,48,0.6)",
+    fontFamily: "Ubuntu",
   },
   tripname: {
     fontSize: 12,
@@ -155,11 +156,13 @@ const styles = StyleSheet.create({
   locLabel: { 
     fontSize: 10,
     marginVertical: 8, 
+    fontFamily: 'Ubuntu',
     color: "rgba(23,25,48,0.6)"
   },
   locText: {
     fontSize: 12,
-    paddingLeft: 5 
+    paddingLeft: 5 ,
+    fontFamily: 'Ubuntu',
   },
   item: {
     flex: 1,

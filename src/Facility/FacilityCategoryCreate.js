@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 const data = [
   { category: 'General Item', value: '1' , itemname:'box'},
   { category: 'Clothing', value: '2', itemname:'tshirt' },
-  { category: 'Electronics', value: '3' , itemname:'flash'},
+  { category: 'Electronics', value: '3' , itemname:'battery-half'},
   { category: 'Food', value: '4' , itemname:'utensils'},
   { category: 'Cosmetics', value: '5' , itemname:'spa'},
   { category: 'Watches', value: '6' , itemname:'clock'},

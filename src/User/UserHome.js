@@ -8,7 +8,7 @@ import OrderHomeScreen from "../Order/Order";
 import FacilityCreate from '../Facility/FacilityCreate';
 import ProfileHomeScreen from "../Profile/Profile";  
 import TripScreen from '../Trip/Trip';
-import OrderDetails from "../Order/OrderDetails";
+import TripDetailScreen from "../Trip/TripDetails";
 import OrderBooked from "../Order/OrderBooked";
 
 const Tab = createBottomTabNavigator();
@@ -99,7 +99,7 @@ export default function UserHome() {
     <NavigationContainer independent={true}>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/> 
-        <RootStack.Screen name="OrderDetail" component={OrderDetails} options={{ title: ''}}/>
+        <RootStack.Screen name="TripDetails" component={TripDetailScreen} options={{ title: ''}}/>
         <RootStack.Screen name="OrderBooked" component={OrderBooked} options={{ title: ''}}/>
       </RootStack.Navigator>
     </NavigationContainer>

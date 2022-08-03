@@ -18,8 +18,8 @@ function TripLists({navigation}){
           "dropOffAddress": "52 Baho Road, Sanchaung Tsp.,Yangon",
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
-          "secpickUpAddress": "",
-          "facilityInfo": "Facility Info"
+          "secpickUpAddress": "", 
+          "facilityInfo": "Packaging Details \nPackaged goods are to be tigtly packed to avoid breakages \nor spillage for goods that contain liquid. \nGoods that are to be repacked by the facility will be charged $6.5. \nNote: Free delivery available for packages of 20kg and above \nupon arrival to the destination."
         },
         "categoryLists": [
           {
@@ -38,7 +38,7 @@ function TripLists({navigation}){
           }, 
           {
             "category": "Electronics",
-            "item": "flash",
+            "item": "battery-half",
             "weight": "lb",
             "price": "200",
             "currency": "USD"
@@ -59,7 +59,12 @@ function TripLists({navigation}){
           {
             "category": "Strong Acid",
             "item": "flask",
-          }],
+          }, 
+          {
+            "category": "Explosive stuffs",
+            "item": "bahai",
+          }
+        ],
           "trackingStatus" : "Reserved",
           "packages" : [
             {
@@ -187,7 +192,7 @@ function TripLists({navigation}){
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
           "secpickUpAddress": "",
-          "facilityInfo": "Facility Info"
+          "facilityInfo": "Packaging Details \n Packaged goods are to be tigtly packed to avoid breakages \n or spillage for goods that contain liquid. \n Goods that are to be repacked by the facility will be charged $6.5. \n Note: Free delivery available for packages of 20kg and above \n upon arrival to the destination."
         },
         "categoryLists": [
           {
@@ -340,8 +345,8 @@ function TripLists({navigation}){
           "dropOffAddress": "52 Baho Road, Sanchaung Tsp.,Yangon",
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
-          "secpickUpAddress": "",
-          "facilityInfo": "Facility Info"
+          "secpickUpAddress": "", 
+          "facilityInfo": "Packaging Details \nPackaged goods are to be tigtly packed to avoid breakages \nor spillage for goods that contain liquid. \nGoods that are to be repacked by the facility will be charged $6.5. \nNote: Free delivery available for packages of 20kg and above \nupon arrival to the destination."
         },
         "categoryLists": [
           {
@@ -511,7 +516,7 @@ function TripLists({navigation}){
         </View>
         <View style={styles.itemLists}>
           {tripData.map((item, index) => (
-            <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('OrderDetail', { otherParam: item})}>
+            <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('TripDetails', { otherParam: item})}>
                <View style={{flex: 10}}>
                 <View style={styles.tripHeader}> 
                   <Text style={styles.title}>TRIP NUMBER - <Text style={styles.numberText}>{item.tripID} </Text></Text> 
@@ -568,7 +573,8 @@ const styles = StyleSheet.create({
   header: { 
     flex: 1,
     flexDirection: 'column',
-    paddingBottom: 10,
+    paddingBottom:  "6%",
+    paddingTop:  "4%",
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -576,7 +582,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: 'UbuntuBold',
     paddingLeft: 5, 
-    color: "#185354",
+    color: "#1B9494", 
   },
   text: {
     fontSize: 13, 
