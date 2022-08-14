@@ -1,15 +1,14 @@
 import React from 'react'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTheme } from '@react-navigation/native';  
-import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { View,SafeAreaView, Text, StyleSheet, Image , StatusBar, TouchableOpacity, ScrollView, TextInput} from 'react-native'; 
+import { useTheme } from '@react-navigation/native'; 
+import { View,SafeAreaView, Text, StyleSheet, Image , StatusBar, TouchableOpacity, ScrollView} from 'react-native'; 
 
-function TripLists({navigation}){ 
+function PackageLists({navigation}){ 
   const theme = useTheme();  
   let tripData = [
       {
-        "tripID": "000000001",
+        "tripID": "00001",
         "tripInfo": {
           "dropOff": "Yangon",
           "desVal": "Bangkok",
@@ -18,8 +17,8 @@ function TripLists({navigation}){
           "dropOffAddress": "52 Baho Road, Sanchaung Tsp.,Yangon",
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
-          "secpickUpAddress": "", 
-          "facilityInfo": "Packaging Details \nPackaged goods are to be tigtly packed to avoid breakages \nor spillage for goods that contain liquid. \nGoods that are to be repacked by the facility will be charged $6.5. \nNote: Free delivery available for packages of 20kg and above \nupon arrival to the destination."
+          "secpickUpAddress": "",
+          "facilityInfo": "Facility Info"
         },
         "categoryLists": [
           {
@@ -38,7 +37,7 @@ function TripLists({navigation}){
           }, 
           {
             "category": "Electronics",
-            "item": "battery-half",
+            "item": "flash",
             "weight": "lb",
             "price": "200",
             "currency": "USD"
@@ -59,12 +58,7 @@ function TripLists({navigation}){
           {
             "category": "Strong Acid",
             "item": "flask",
-          }, 
-          {
-            "category": "Explosive stuffs",
-            "item": "bahai",
-          }
-        ],
+          }],
           "trackingStatus" : "Reserved",
           "packages" : [
             {
@@ -182,7 +176,7 @@ function TripLists({navigation}){
           ]
       },
       {
-        "tripID": "000000002",
+        "tripID": "00002",
         "tripInfo": {
           "dropOff": "Yangon",
           "desVal": "LOS ANGELES",
@@ -192,7 +186,7 @@ function TripLists({navigation}){
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
           "secpickUpAddress": "",
-          "facilityInfo": "Packaging Details \n Packaged goods are to be tigtly packed to avoid breakages \n or spillage for goods that contain liquid. \n Goods that are to be repacked by the facility will be charged $6.5. \n Note: Free delivery available for packages of 20kg and above \n upon arrival to the destination."
+          "facilityInfo": "Facility Info"
         },
         "categoryLists": [
           {
@@ -336,7 +330,7 @@ function TripLists({navigation}){
           ]
       },
       {
-        "tripID": "000000003",
+        "tripID": "00003",
         "tripInfo": {
           "dropOff": "Yangon",
           "desVal": "SINGAPORE",
@@ -345,8 +339,8 @@ function TripLists({navigation}){
           "dropOffAddress": "52 Baho Road, Sanchaung Tsp.,Yangon",
           "secdropOffAddress": "",
           "pickUpAddress": "46-03 11th street, Elmhurst, NY, 11373",
-          "secpickUpAddress": "", 
-          "facilityInfo": "Packaging Details \nPackaged goods are to be tigtly packed to avoid breakages \nor spillage for goods that contain liquid. \nGoods that are to be repacked by the facility will be charged $6.5. \nNote: Free delivery available for packages of 20kg and above \nupon arrival to the destination."
+          "secpickUpAddress": "",
+          "facilityInfo": "Facility Info"
         },
         "categoryLists": [
           {
@@ -501,47 +495,38 @@ function TripLists({navigation}){
     <View style={{ flex: 1 }}>
       <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
       <ScrollView>
-        <SafeAreaView style={styles.container}> 
-        <View style={styles.searchBar}> 
-          <Image source={require('../assets/images/sm-logoWhite.png')} style={{ width: 40,resizeMode: 'center', height: 38}}/> 
-          <View style={{ flexDirection: 'row'}}> 
-            <Ionicons name="search-outline" size={18} style={{ padding : '3%', color: '#7C7C7C' }}/>
-            <TextInput style={styles.input}  placeholder="Search trip to destination"/>
-          </View> 
-          <MaterialIcons name="microsoft-xbox-controller-menu" size={30} style={{ paddingTop: '1%', color: '#169393' }}/>
-      </View>
+        <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.mainText}> Welcome to PackX </Text>
-          <Text style={styles.text}> Pack & Send Everything Simply with PackX </Text>
+          <Text style={styles.mainText}> My Package </Text> 
         </View>
         <View style={styles.itemLists}>
           {tripData.map((item, index) => (
-            <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('TripDetails', { otherParam: item})}>
-               <View style={{flex: 10}}>
-                <View style={styles.tripHeader}> 
-                  <Text style={styles.title}>TRIP NUMBER - <Text style={styles.numberText}>{item.tripID} </Text></Text> 
+            <TouchableOpacity style={styles.item} key={index} onPress={() => navigation.navigate('OrderDetail', { otherParam: item})}>
+              <View style={styles.tripHeader}> 
+                <View style={styles.statusBtn}> 
+                  <Image source={require('../assets/images/tracking.png')} style={{ width: 19,resizeMode: 'center', height: 15, marginTop: "3%"  }}/> 
+                  <Text style={styles.statusText}>  {item.trackingStatus}</Text> 
                 </View>
-                <View style={styles.tripList}>
-                  <View style={{flex: 2}}>
-                    <Text style={styles.triplabel}>From</Text>
-                    <Text style={styles.tripname}>{item.tripInfo.dropOff}</Text>
-                    <Text style={styles.datelabel}>Last Drop Off</Text>
-                    <Text style={styles.dateText}>{item.tripInfo.dropOffDate}</Text>
-                  </View>
-                  <View style={{flex: 1, justifyContent: 'center'}}>  
-                    <Image source={require('../assets/images/planeCircle.png')} style={{ width: 33,resizeMode: 'center', height: 33}}/>  
-                  </View>
-                  <View style={{flex: 2}}>
-                    <Text style={styles.triplabel}>To</Text>
-                    <Text style={styles.tripname}>{item.tripInfo.desVal}</Text>
-                    <Text style={styles.datelabel}>Est. Arrival</Text>
-                    <Text style={styles.dateText}>{item.tripInfo.pickUpDate}</Text>
-                  </View>
-                </View> 
-               </View>
-               <View style={styles.rightArr}>  
-                  <Ionicons name="md-chevron-forward-outline" size={30} style={{marginLeft: 10, color: '#185354' }}/>
+                <Text style={styles.title}>TRIP ID - <Text style={styles.numberText}>{item.tripID} </Text></Text>
+              </View>
+              <View style={styles.tripList}>
+                <View style={{flex: 3}}>
+                  <Text style={styles.triplabel}>From</Text>
+                  <Text style={styles.tripname}>{item.tripInfo.dropOff}</Text> 
+                  <Text style={styles.dateText}>{item.tripInfo.dropOffDate}</Text>
                 </View>
+                <View style={{flex: 2, justifyContent: 'center', alignItems:"center"}}>  
+                  <Image source={require('../assets/images/stopFlight.png')} style={{ width: 43,resizeMode: 'center', height: 40}}/>  
+                </View>
+                <View style={{flex: 3 }}>
+                  <Text style={styles.triplabel}>To</Text>
+                  <Text style={styles.tripname}>{item.tripInfo.desVal}</Text> 
+                  <Text style={styles.dateText}>{item.tripInfo.pickUpDate}</Text>
+                </View>
+                <View style={{flex: 1, justifyContent: "center", alignItems:"center" }}>
+                  <Ionicons name="md-chevron-forward-outline" size={30} style={{marginLeft: 10, color: '#94A0A0' }}/> 
+                </View>
+              </View> 
             </TouchableOpacity> 
           ))} 
         </View> 
@@ -552,10 +537,11 @@ function TripLists({navigation}){
 } 
 
 const Stack = createNativeStackNavigator();
-export default function TripScreen() { 
+export default function PackageScreen(info) {
+  console.log(info.data)
   return (  
-    <Stack.Navigator initialRouteName="TripLists" >
-      <Stack.Screen name="TripLists" component={TripLists} options={{headerShown: false }}/> 
+    <Stack.Navigator initialRouteName="PackageLists" >
+      <Stack.Screen name="PackageLists" component={PackageLists} options={{headerShown: false }}/> 
     </Stack.Navigator> 
   );
 }
@@ -566,45 +552,25 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     marginHorizontal: "4%"
   },
-  input: { 
-    fontFamily: 'Ubuntu',
-  },
   header: { 
-    flex: 1,
     flexDirection: 'column',
-    paddingBottom:  "6%",
-    paddingTop:  "4%",
-    justifyContent: 'center',
-    alignItems: 'center'
+    paddingBottom: 10
   },
   mainText: {
     fontSize: 25,
     fontFamily: 'UbuntuBold',
-    paddingLeft: 5, 
-    color: "#1B9494", 
+    padding : 5, 
   },
   text: {
-    fontSize: 13, 
-    fontFamily: 'Ubuntu',
+    fontSize: 18,
+    fontFamily: 'UbuntuBold',
     padding : 10,
-    color: "#8E9696",
-  }, 
-  searchBar:{
-    flexDirection: 'row',
-    backgroundColor: "#FFFFFF",
-    borderColor: "#C8C8C8",
-    borderRadius: 15, 
-    borderWidth: 1,
-    marginVertical: 20,
-    padding: 10,
-    justifyContent: 'space-between'
   },
   itemLists:{  
     alignContent: 'flex-start'
   },
   item: {
     color: "#185354",
-    flexDirection: 'row',
     fontSize: 14,
     backgroundColor: "#FFFFFF",
     shadowColor: 'rgba(0,0,0,0.25)',
@@ -619,7 +585,6 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 10,
     color: "#185354",
-    letterSpacing: 1,
     fontSize: 14,
     fontFamily: "UbuntuMedium", 
   },
@@ -627,15 +592,16 @@ const styles = StyleSheet.create({
     color:  '#169393', 
     fontFamily: "UbuntuBold",
   },
-  tripHeader:{
-    flex: 1,  
+  tripHeader:{ 
+    display: "flex",
+    flexDirection: "row",
     justifyContent: 'space-between', 
     borderBottomColor: '#E5F1F2',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     marginBottom: "2%",
   },
   tripList: {
-    flex: 1,  
+    display: "flex",
     flexDirection: "row"
   },
   triplabel: {
@@ -647,25 +613,28 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textTransform: "uppercase",
     fontFamily: "UbuntuMedium",
-  },
-  datelabel: { 
-    fontSize: 10,
-    marginVertical: 8,
-    color:  '#169393',
-  },
+  }, 
   dateText: {
     fontSize: 12,
     textTransform: "uppercase",
     fontFamily: "UbuntuMedium",
     color: "#185354",
+    marginVertical: 8,
   },
-  rightArr: {
-    flex: 1 ,
-    flexDirection: "row", 
-    borderLeftColor: "#E5F1F2",
-    borderLeftWidth: 1,
-    alignItems: "center", 
-    justifyContent: 'flex-end',
-    marginLeft: "2%",
-  }
+  statusBtn : { 
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#E5F1F2",
+    borderRadius: 15,  
+    paddingEnd: "3%", 
+    marginBottom: "2%", 
+    paddingLeft: "2%" 
+  },
+  statusText: {
+    fontSize: 12,
+    textTransform: "uppercase",
+    fontFamily: "UbuntuMedium",
+    color: "#000000", 
+    paddingVertical: "1%" ,
+  },
 });

@@ -118,8 +118,8 @@ function FacilityCategoryForm({route, navigation} ){
           {categoryLists.length > 0 && (
             <ScrollView style={styles.addRoute}>
                 <Text style={styles.label}>PRICIE CHART</Text>  
-                {categoryLists.map((data ) => (
-                  <View style={styles.itembox}>
+                {categoryLists.map((data, index ) => (
+                  <View style={styles.itembox} key={index}>
                     <Text style={styles.itemlabel}> <FontAwesome5 style={styles.item} name={data.item} size={16} />  {data.category}</Text> 
                     <Text style={styles.itemlabel}>{data.price} {data.currency} / {data.weight}</Text>  
                   </View>
@@ -249,8 +249,8 @@ function FacilityCategoryForm({route, navigation} ){
         {prohibitedLists.length > 0 && (
             <ScrollView style={styles.addRoute}>
                 <Text style={styles.label}>PROHIBITED ITEM</Text>  
-                {prohibitedLists.map((data ) => (
-                  <View style={styles.itembox}>
+                {prohibitedLists.map((data , index) => (
+                  <View style={styles.itembox} key={index}>
                     <Text style={styles.itemlabel}> <FontAwesome5 style={styles.item} name={data.item} size={16} />  {data.category}</Text>  
                   </View>
                  ))}
@@ -302,17 +302,13 @@ function FacilityCategoryForm({route, navigation} ){
         </View>  
          
         <TouchableOpacity style={styles.dateList} onPress={addProList} > 
-                <FontAwesome
-                  style={styles.icon}
-                  name="plus-circle"
-                  size={23}
-                />
+               <FontAwesome style={styles.icon} name="plus-circle" size={23} />
                <Text style={styles.label}> Add </Text> 
         </TouchableOpacity>
       <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center', marginTop: 15}}> 
         <TouchableOpacity onPress={goToOrder} >
             <Image source={require('../assets/images/createTripBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
-          </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     </View>
     </ScrollView>

@@ -1,9 +1,15 @@
-import React from 'react';
+import React ,  { useState } from 'react';
+import Modal from "react-native-modal";
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { View, Text, StyleSheet, TouchableOpacity, Image , ScrollView} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image , ScrollView, TextInput} from 'react-native';
 
 function OrderDetails ({route, navigation}) {
+
+  const [isModalVisible, setModalVisible] = useState(false); 
+  const [itemList,setItemLists] = useState([]);
+  const [item, setItem] = useState(null);
+  const [qty, setQty] = useState(null);
   const tripData = route.params.otherParam;  
   console.log(tripData.prohibitedLists) 
   React.useLayoutEffect(() => {
@@ -18,36 +24,49 @@ function OrderDetails ({route, navigation}) {
   }, [navigation]);
 
   function showModal(){   
-    navigation.navigate('ORDER' );
+    setModalVisible(true);
   } 
+
+  function hideModal(){   
+    setModalVisible(false);
+    navigation.navigate('Reserved');
+  } 
+
+  function addList(){
+    setItemLists(itemList => [{  
+      item : item, 
+      qty : qty
+    },...itemList]);
+  }
+    
     return (
       <ScrollView style={styles.container}> 
         <View style={styles.tripList}> 
           <Text style={styles.mainText}>TRIP - {tripData.tripID}</Text> 
           <View style={{flex: 4, flexDirection: 'row' }}> 
-            <View style={{flex: 3, marginBottom: "3%", flexDirection: 'column'  }}>
-              <View style={{flex: 2, paddingLeft: 5 }}>
+            <View style={{flex: 3, marginBottom: "2%", flexDirection: 'column'  }}>
+              <View style={{flex: 1 }}>
                 <Text style={styles.triplabel}>From</Text>
                 <Text style={styles.tripname}>{tripData.tripInfo.dropOff}</Text> 
                 <Text style={styles.triplabel}>{tripData.tripInfo.dropOffDate}</Text>
               </View>
-              <View style={{flex: 2, paddingTop: 10}}>
+              <View style={{flex: 1, paddingTop: "5%"}}>
                 <Text style={styles.triplabel}><Icon style={styles.icon} name='location-sharp' size={14} /> DROP OFF ADDRESSS</Text>
-                <Text style={styles.locText}>{tripData.tripInfo.dropOffAddress}</Text> 
+                <Text style={styles.itemlabel}>{tripData.tripInfo.dropOffAddress}</Text> 
               </View> 
             </View>
             <View style={{flex: 1, justifyContent: 'center'}}>  
-              <Image source={require('../assets/images/stopFlight.png')} style={{ width: 43,resizeMode: 'center', height: 135}}/>  
+              <Image source={require('../assets/images/stopFlight.png')} style={{ width: 43,resizeMode: 'center', height: 140}}/>  
             </View>
             <View style={{flex: 3, flexDirection: 'column' }}>
-              <View style={{flex: 2, paddingLeft: 5 }}>
+              <View style={{flex: 1 }}>
                 <Text style={styles.triplabel}>To</Text>
                 <Text style={styles.tripname}>{tripData.tripInfo.desVal}</Text> 
                 <Text style={styles.triplabel}>{tripData.tripInfo.pickUpDate}</Text>
               </View>  
-              <View style={{flex: 2, paddingTop: 10}}>
+              <View style={{flex: 1 }}>
                 <Text style={styles.triplabel}><Icon style={styles.icon} name='location-sharp' size={14} /> PICK UP ADDRESS</Text>
-                <Text style={styles.locText}>{tripData.tripInfo.pickUpAddress}</Text> 
+                <Text style={styles.itemlabel}>{tripData.tripInfo.pickUpAddress}</Text> 
               </View> 
             </View>
           </View>
@@ -76,8 +95,8 @@ function OrderDetails ({route, navigation}) {
             <Text style={styles.mainText}>CATEGORY</Text> 
           </View>
           <View style={{flex: 4, flexDirection: 'column' }}>  
-                {tripData.categoryLists.map((data ) => (
-                  <View style={styles.itembox}>
+                {tripData.categoryLists.map((data , index) => (
+                  <View key={index} style={styles.itembox}>
                     <Text style={styles.itemlabel}> <FontAwesome5 style={styles.icon} name={data.item} size={16} />  {data.category}</Text> 
                     <Text style={styles.catText}>{data.price} {data.currency} / {data.weight}</Text>  
                   </View>
@@ -93,8 +112,8 @@ function OrderDetails ({route, navigation}) {
             <Text style={styles.mainText}>PROHIBITED ITEMS</Text> 
           </View>
           <View style={{flex: 4, flexDirection: 'column' }}>  
-                {tripData.prohibitedLists.map((data ) => (
-                  <View style={styles.itembox}>
+                {tripData.prohibitedLists.map((data ,index) => (
+                  <View key={index} style={styles.itembox}>
                     <Text style={styles.itemlabel}> <FontAwesome5 style={styles.icon} name={data.item} size={16} />  {data.category}</Text>  
                   </View>
                  ))}
@@ -102,8 +121,47 @@ function OrderDetails ({route, navigation}) {
         </View> 
           <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}> 
               <TouchableOpacity onPress={showModal}>
-                <Image source={require('../assets/images/reserveBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45}}/>
-              </TouchableOpacity>
+                <Image source={require('../assets/images/reserveBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45 , marginBottom: "3%"}}/>
+              </TouchableOpacity> 
+              <Modal isVisible={isModalVisible} wipeDirection={['up', 'left', 'right', 'down']} style={styles.view} > 
+                <View style={styles.modalView}>
+                    <Text style={styles.title}>Reserve your package </Text> 
+                    <Text style={styles.subtitle}>Package Summary</Text> 
+                    <View style={{ flex: 2, flexDirection: "column" }}>  
+                        <View style={styles.itemHeader} > 
+                          <Text style={styles.itemTitle}>Item Description</Text>
+                          <Text style={styles.itemTitle}>Qty</Text>
+                        </View>   
+                        {itemList.length != 0  &&
+                          <ScrollView>
+                          {itemList.map((data, index ) => (
+                            <View style={styles.itemRow} key={index}>
+                              <Text style={styles.deslabel}> {data.item}</Text>  
+                              <Text style={styles.deslabel}> {data.qty} x </Text>  
+                            </View>
+                          ))}
+                          </ScrollView>
+                        }
+                        <View style={styles.itemRow} > 
+                          <TextInput style={styles.itemInputLg} placeholder="Input Your Item Here ...." onChangeText={setItem}/>
+                          <TextInput style={styles.itemInputXs} placeholder="Qty" onChangeText={setQty}/>
+                        </View>    
+                        <TouchableOpacity onPress={addList} style={{ flexDirection: "row", justifyContent: 'center' }}> 
+                          <FontAwesome5 style={styles.addicon} name="plus-circle" size={23} />
+                          <Text style={styles.addlabel}> Add </Text> 
+                        </TouchableOpacity>   
+                    </View> 
+                    <View style={{ flex: 1, flexDirection: "column" }}>
+                        <Text style={styles.inputLabel}>Receiver Name</Text>
+                        <TextInput style={styles.input}  placeholder="Receiver Name"/>
+                        <Text style={styles.inputLabel}>Receiver Contact</Text>
+                        <TextInput style={styles.input}  placeholder="Receiver Contact"/>
+                      <TouchableOpacity onPress={hideModal} style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
+                        <Image source={require('../assets/images/confirmBtn.png')} style={{ width: 316,resizeMode: 'center', height: 45 , marginBottom: "3%"}}/>
+                      </TouchableOpacity>  
+                    </View>
+                </View>
+              </Modal>
           </View>
       </ScrollView>
     );
@@ -119,8 +177,7 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontSize: 16,
-    color:  '#185354', 
-    paddingLeft: 5,
+    color:  '#185354',  
     fontFamily: 'UbuntuBold',
     paddingBottom : "3%", 
   }, 
@@ -132,7 +189,7 @@ const styles = StyleSheet.create({
   title: { 
     color: "#185354",
     fontSize: 16,
-    fontFamily: "UbuntuMedium", 
+    fontFamily: "UbuntuBold", 
     textTransform: 'uppercase',
     paddingVertical: "3%"
   },
@@ -161,7 +218,7 @@ const styles = StyleSheet.create({
     marginVertical: "5%",
   },
   triplabel: {
-    fontSize: 12,
+    fontSize: 11,
     marginBottom: 8, 
     textTransform: "uppercase",
     fontFamily: "UbuntuLight",
@@ -218,11 +275,106 @@ const styles = StyleSheet.create({
   itemlabel: { 
     fontSize: 14, 
     fontFamily: 'Ubuntu',
+    alignSelf: 'flex-start',
   },
   itembox: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     height: 30
-  }
+  },
+  view: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    justifyContent: 'flex-end',
+    margin: 0,
+    height: 20
+  },
+  modalView: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 20, 
+    marginTop:  '30%',
+    padding : '5%'
+  },
+  subtitle: {
+    textAlign: "center",
+    color: "#185354",
+    fontSize: 20,
+    fontFamily: "Ubuntu",  
+    paddingVertical: "5%", 
+    borderBottomColor: "#D7DEDD",
+    borderBottomWidth: 1,
+  },
+  inputLabel:{
+    color: "#333333",
+    fontFamily: "Ubuntu",  
+    fontSize: 14
+  },
+  input: {
+    padding: 10,
+    fontSize: 14,
+    borderBottomColor: "#D7DEDD",
+    borderBottomWidth: 1,
+    marginBottom: "5%",
+    fontFamily: "Ubuntu",  
+    marginTop: 5
+  },
+  itemInputLg: {
+    flex: 5,
+    padding: "3%",
+    height: 39,
+    fontSize: 14,
+    borderColor: "#C8C8C8",
+    color: "#535353",
+    fontFamily: "Ubuntu",  
+    borderWidth: 1,
+    borderRadius: 10,
+    marginVertical : "2%", 
+    marginRight : "2%", 
+  },
+  itemInputXs: {
+    flex: 1,
+    padding: "3%",
+    height: 39,
+    fontSize: 14,
+    borderColor: "#C8C8C8",
+    color: "#535353",
+    fontFamily: "Ubuntu",  
+    borderWidth: 1,
+    borderRadius: 10,
+    marginVertical : "2%",  
+  },
+  itemHeader: { 
+    flexDirection: "row" , 
+    justifyContent: 'space-between',  
+    marginVertical : "5%",  
+  },
+  itemRow: { 
+    flexDirection: "row" , 
+    justifyContent: 'space-between',
+    borderTopColor: "#D7DEDD",
+    borderTopWidth: 1,
+    paddingVertical : "3%",  
+  },
+  addlabel: {
+    fontSize: 24,
+    color: "#169393",
+    textTransform: "uppercase",
+    fontFamily: 'UbuntuBold',
+  }, 
+  itemTitle: { 
+    fontSize: 16,
+    color: "#2797A6", 
+    fontFamily: 'UbuntuMedium', 
+  },
+  addicon: {
+    color: "#085252", 
+    marginVertical: 2
+  },
+  deslabel: {
+    fontSize: 14,
+    color: "#707070", 
+    fontFamily: 'Ubuntu',
+    paddingVertical : "2%", 
+  }, 
 });

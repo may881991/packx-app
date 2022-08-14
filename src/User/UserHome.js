@@ -4,12 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';  
-import OrderHomeScreen from "../Order/Order";
-import FacilityCreate from '../Facility/FacilityCreate';
+import PackageHomeScreen from "../Package/Package"; 
 import ProfileHomeScreen from "../Profile/Profile";  
 import TripScreen from '../Trip/Trip';
 import TripDetailScreen from "../Trip/TripDetails";
-import OrderBooked from "../Order/OrderBooked";
+import TripReservedScreen from "../Trip/TripReserved";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,17 +28,11 @@ function ProfileScreen( ) {
 }
 
 
-function OrderScreen() { 
+function PackageScreen() { 
   return (
-    <OrderHomeScreen />
+    <PackageHomeScreen />
   );
-}
-
-function FacilityCreateScreen() {
-  return (
-    <FacilityCreate />
-  );
-}
+} 
 
 const HomeTabs = () => {
   return (
@@ -49,7 +42,7 @@ const HomeTabs = () => {
             let iconName;
             if (route.name === 'HOME') {
               iconName = 'home-outline';
-            } else if (route.name === 'ORDER') {
+            } else if (route.name === 'PACKAGE') {
               iconName = 'cube-outline';
             } else if (route.name === 'INBOX') {
               iconName = 'albums-outline';
@@ -86,7 +79,7 @@ const HomeTabs = () => {
         })}
       >
         <Tab.Screen name="HOME" component={TripScreen} options={{headerShown: false, title:  ''}}/>
-        <Tab.Screen name="ORDER" component={OrderScreen} options={{headerShown: false, title:  ''}}/>
+        <Tab.Screen name="PACKAGE" component={PackageScreen} options={{headerShown: false, title:  ''}}/>
         <Tab.Screen name="INBOX" component={InBoxScreen} options={{headerShown: false, title:  ''}}/>
         <Tab.Screen name="PROFILE" component={ProfileScreen} options={{ title:  ''}}/>
       </Tab.Navigator>
@@ -100,7 +93,7 @@ export default function UserHome() {
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={HomeTabs} options={{headerShown: false }}/> 
         <RootStack.Screen name="TripDetails" component={TripDetailScreen} options={{ title: ''}}/>
-        <RootStack.Screen name="OrderBooked" component={OrderBooked} options={{ title: ''}}/>
+        <RootStack.Screen name="Reserved" component={TripReservedScreen} options={{headerShown: false }}/>
       </RootStack.Navigator>
     </NavigationContainer>
   );

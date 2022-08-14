@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, View, Image, Text , Button} from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, View, Image, Text } from "react-native";
 
 const FacilitySignIn = (props) => {
   const [text, onChangeText] = React.useState("johndoe@example.com");
